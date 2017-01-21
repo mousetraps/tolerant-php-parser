@@ -30,6 +30,12 @@ foreach ($testProviderArray as $idx=>$testCaseFile) {
 
 $asts = SplFixedArray::fromArray($asts);
 
+foreach ($asts as $ast) {
+    foreach ($ast->getDescendantNodesAndTokens() as &$node) {
+        $a = $node;
+    }
+}
+
 $endTime = microtime(true);
 $endMemory = memory_get_peak_usage(true);
 

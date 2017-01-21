@@ -89,15 +89,15 @@ class Node implements \JsonSerializable {
      * @param callable|null $shouldDescendIntoChildrenFn
      * @return \Generator|Node[]|Token[]
      */
-    public function getDescendantNodesAndTokens(callable $shouldDescendIntoChildrenFn = null) {
+    public function & getDescendantNodesAndTokens(callable $shouldDescendIntoChildrenFn = null) {
         // TODO - write unit tests to prove invariants
         // (concatenating all descendant Tokens should produce document, concatenating all Nodes should produce document)
 
-        foreach ($this->getChildNodesAndTokens() as $child) {
+        foreach ($this->getChildNodesAndTokens() as & $child) {
             if ($child instanceof Node) {
                 yield $child;
                 if ($shouldDescendIntoChildrenFn == null || $shouldDescendIntoChildrenFn($child)) {
-                    foreach ($child->getDescendantNodesAndTokens($shouldDescendIntoChildrenFn) as $subChild) {
+                    foreach ($child->getDescendantNodesAndTokens($shouldDescendIntoChildrenFn) as & $subChild) {
                         yield $subChild;
                     }
                 }
@@ -149,13 +149,13 @@ class Node implements \JsonSerializable {
      *
      * @return \Generator | Token[] | Node[]
      */
-    public function getChildNodesAndTokens() : \Generator {
-        foreach (\call_user_func('get_object_vars', $this) as $i=>$val) {
+    public function & getChildNodesAndTokens() : \Generator {
+        foreach (\call_user_func('get_object_vars', $this) as $i=>&$val) {
             if ($i === "parent" || $i == "kind" || \is_string($val)) {
                 continue;
             }
             if (\is_array($val)) {
-                foreach ($val as $child) {
+                foreach ($val as &$child) {
                     $child === null ?: yield $i=>$child;
                 }
                 continue;
