@@ -4,11 +4,36 @@
             {
                 "InlineHtml": {
                     "scriptSectionEndTag": null,
-                    "text": {
-                        "kind": "InlineHtml",
-                        "textLength": 6
+                    "text": null,
+                    "scriptSectionStartTag": {
+                        "kind": "ScriptSectionStartTag",
+                        "textLength": 2
+                    }
+                }
+            },
+            {
+                "ExpressionStatement": {
+                    "expression": {
+                        "QualifiedName": {
+                            "globalSpecifier": null,
+                            "relativeSpecifier": null,
+                            "nameParts": {
+                                "QualifiedNameParts": {
+                                    "children": [
+                                        {
+                                            "kind": "Name",
+                                            "textLength": 3
+                                        }
+                                    ]
+                                }
+                            }
+                        }
                     },
-                    "scriptSectionStartTag": null
+                    "semicolon": {
+                        "error": "MissingToken",
+                        "kind": "SemicolonToken",
+                        "textLength": 0
+                    }
                 }
             }
         ],

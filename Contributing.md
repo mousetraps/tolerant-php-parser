@@ -10,8 +10,8 @@ default, but make it very easy for others to contribute a fix (or read on if you
 ## Building and Running 
 1. Fork and clone the repository.
 2. `composer-install`
-3. `vendor\bin\phpunit` from the root project directory to run the tests to run all the test suites defined in `phpunit.xml`. 
-To run individual suites, run `vendor\bin\phpunit --testsuite <test suite name>`.
+3. `php -c custom-php.ini vendor\phpunit\phpunit\phpunit` from the root project directory to run the tests to run all the test suites defined in `phpunit.xml`. 
+To run individual suites, run `php -c custom-php.ini vendor\phpunit\phpunit\phpunit --testsuite <test suite name>`.
 Note that the validation test suite requires you to also include relevant submodules: `git submodule update --init --recursive`
 
 > :bulb: looking for your first PR? Take a look through the issue tracker, search the codebase for TODOs, or try enabling

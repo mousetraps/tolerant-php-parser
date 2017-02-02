@@ -15,21 +15,27 @@ matrix:
   allow_failures:
     - env: VALIDATION=true
 
-cache:
-  directories:
-    - validation/frameworks
+cache: false
+
+git:
+  submodules: false
 
 before_script:
   - phpenv config-rm xdebug.ini
+#  - phpenv config-add php-custom.ini
   - if find . -name "*.php" -path "./src/*" -path "./experiments/*" -path "./tools/*" -path "./syntax-visualizer/server/src/*" -exec php -l {} 2>&1 \; | grep "syntax error, unexpected"; then exit 1; fi  
   - if find . -name "*.php" -path "./tests/*" -path "./validation/*" -maxdepth 0 --exec php -l {} 2>&1 \; | grep "syntax error, unexpected"; then exit 1; fi    
+  - if [[ $VALIDATION = true ]]; then git submodule update --init --recursive; fi
+  - composer install
 
 script:
   - |
+    set -e
+    
     if [[ $VALIDATION = true ]]; then
-      phpunit --testsuite validation
+      php -c vendor\phpunit\phpunit\phpunit --testsuite validation
     else
-      phpunit --testsuite invariants
-      phpunit --testsuite grammar
-      phpunit --testsuite api
+      php -c vendor\phpunit\phpunit\phpunit --testsuite invariants
+      php -c vendor\phpunit\phpunit\phpunit --testsuite grammar
+      php -c vendor\phpunit\phpunit\phpunit --testsuite api
     fi

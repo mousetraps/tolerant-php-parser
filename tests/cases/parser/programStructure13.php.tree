@@ -4,10 +4,41 @@
             {
                 "InlineHtml": {
                     "scriptSectionEndTag": null,
-                    "text": {
-                        "kind": "InlineHtml",
-                        "textLength": 7
+                    "text": null,
+                    "scriptSectionStartTag": {
+                        "kind": "ScriptSectionStartTag",
+                        "textLength": 2
+                    }
+                }
+            },
+            {
+                "ExpressionStatement": {
+                    "expression": {
+                        "QualifiedName": {
+                            "globalSpecifier": null,
+                            "relativeSpecifier": null,
+                            "nameParts": {
+                                "QualifiedNameParts": {
+                                    "children": [
+                                        {
+                                            "kind": "Name",
+                                            "textLength": 3
+                                        }
+                                    ]
+                                }
+                            }
+                        }
                     },
+                    "semicolon": null
+                }
+            },
+            {
+                "InlineHtml": {
+                    "scriptSectionEndTag": {
+                        "kind": "ScriptSectionEndTag",
+                        "textLength": 2
+                    },
+                    "text": null,
                     "scriptSectionStartTag": null
                 }
             }
