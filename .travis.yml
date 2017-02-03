@@ -33,9 +33,9 @@ script:
     set -e
     
     if [[ $VALIDATION = true ]]; then
-      php -c vendor\phpunit\phpunit\phpunit --testsuite validation
+      php -c vendor/phpunit/phpunit/phpunit --testsuite validation
     else
-      php -c vendor\phpunit\phpunit\phpunit --testsuite invariants
-      php -c vendor\phpunit\phpunit\phpunit --testsuite grammar
-      php -c vendor\phpunit\phpunit\phpunit --testsuite api
+      php -c vendor/phpunit/phpunit/phpunit --testsuite invariants
+      php -c vendor/phpunit/phpunit/phpunit --testsuite grammar
+      php -c vendor/phpunit/phpunit/phpunit --testsuite api
     fi
